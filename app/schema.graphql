@@ -1,0 +1,43 @@
+"""
+Defines operation client can perform
+"""
+schema {
+	query: Query
+}
+
+"""
+Defines structure for retrieving data
+"""
+type Post {
+	id: ID!,
+	title: String!,
+	description: String!,
+	created_at: String!
+}
+
+"""
+Defines structure for retrieving data
+"""
+type PostResult {
+	success: Boolean!,
+	errors: [String]
+	post: Post
+}
+
+"""
+Defines structure for response object when all posts are queries
+"""
+type PostsResult {
+	success: Boolean!,
+	errors: [String]
+	post: [Post]
+}
+
+
+"""
+Defines query operation client can make
+"""
+type Query {
+	listPosts: PostsResult!,
+	getPost(id ID!): PostResult!
+}
