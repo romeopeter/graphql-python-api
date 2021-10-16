@@ -1,6 +1,6 @@
-# from app import server
+from app import server
 
 
-# @server.route("/test")
-# def hello():
-#     return "<h1>Hello there!</h1>"
+@server.route("/")
+def hello():
+    return "<h1>Hello there!</h1>"
