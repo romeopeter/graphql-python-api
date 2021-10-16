@@ -3,7 +3,7 @@ from setuptools import setup
 
 set(
     name="graphql-python-api",
-    package="app",
+    packages=["app"],
     include_package_data=True,
     install_requires=[
         "flask",
