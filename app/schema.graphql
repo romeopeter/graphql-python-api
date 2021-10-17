@@ -39,5 +39,5 @@ Defines query operation client can make
 """
 type Query {
 	listPosts: PostsResult!,
-	getPost(id ID!): PostResult!
+	getPost(id: ID!): PostResult!
 }
