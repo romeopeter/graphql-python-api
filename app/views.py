@@ -8,10 +8,15 @@ from ariadne import (
     ObjectType,
 )
 from ariadne.constants import PLAYGROUND_HTML
+from app.query_resolvers import listPosts_resolver, getPost_resolver
+
+query = ObjectType("Query")
+query.set_field("listPosts", listPosts_resolver)
+query.set_field("getPost", getPost_resolver)
 
 
 graphql_type_defs = load_schema_from_path("app/schema.graphql")
-schema = make_executable_schema(graphql_type_defs, snake_case_fallback_resolvers)
+schema = make_executable_schema(graphql_type_defs, query, snake_case_fallback_resolvers)
 
 
 @server.route("/")
@@ -28,7 +33,7 @@ def graphql_playground():
 def graphql_server():
     data = request.get_json()
     success, result = graphql_sync(
-        schema, data, context_valu=request, debug=server.debug
+        schema, data, context_value=request, debug=server.debug
     )
     status_code = 200 if success else 400
     return jsonify(result), status_code
