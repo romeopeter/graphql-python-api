@@ -8,11 +8,24 @@ from ariadne import (
     ObjectType,
 )
 from ariadne.constants import PLAYGROUND_HTML
-from app.query_resolvers import listPosts_resolver, getPost_resolver
+from app.api_resolvers import (
+    listPosts_resolver,
+    getPost_resolver,
+    createPost_resolver,
+    updatePost_resolver,
+    deletePost_resolver,
+)
 
+# Query types
 query = ObjectType("Query")
 query.set_field("listPosts", listPosts_resolver)
 query.set_field("getPost", getPost_resolver)
+
+# Mutation types
+query = ObjectType("Mutation")
+query.set_field("createPost", createPost_resolver)
+query.set_field("updatePost", updatePost_resolver)
+query.set_field("deletePost", deletePost_resolver)
 
 
 graphql_type_defs = load_schema_from_path("app/schema.graphql")
