@@ -10,10 +10,10 @@ class Post(db.Model):
     description = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.Date(), default=datetime.now)
 
-    def to_dict():
+    def to_dict(self):
         return {
             "id": self.id,
             "title": self.title,
             "description": self.description,
-            "created_at": str(self.create_at.strftime("%d-%m-%Y")),
+            "created_at": str(self.created_at.strftime("%d-%m-%Y")),
         }
