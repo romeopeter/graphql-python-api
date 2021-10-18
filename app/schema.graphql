@@ -1,8 +1,9 @@
 """
-Defines operation client can perform
+Defines schema for client operations
 """
 schema {
 	query: Query
+	mutation: Mutation
 }
 
 """
@@ -16,7 +17,7 @@ type Post {
 }
 
 """
-Defines structure for retrieving data
+Defines schema type for retrieving post
 """
 type PostResult {
 	success: Boolean!,
@@ -25,7 +26,7 @@ type PostResult {
 }
 
 """
-Defines structure for response object when all posts are queries
+Defines schema type for retrieving posts
 """
 type PostsResult {
 	success: Boolean!,
@@ -33,11 +34,16 @@ type PostsResult {
 	post: [Post]
 }
 
-
 """
-Defines query operation client can make
+Defines schema type operations client can make
 """
 type Query {
 	listPosts: PostsResult!,
 	getPost(id: ID!): PostResult!
+}
+
+type Mutation {
+	createPost(title: String!, description: String!, created_at: String): PostResult!
+	updatePost(id: ID!, title: String!, description: String!): PostResult!
+	deletePost(id: ID!): PostResult!
 }
