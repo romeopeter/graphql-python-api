@@ -19,5 +19,4 @@ db = SQLAlchemy(server)
 
 # Views & models
 import app.views
-
 import app.models
